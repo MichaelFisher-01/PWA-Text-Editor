@@ -7,24 +7,58 @@ const { InjectManifest } = require('workbox-webpack-plugin');
 // TODO: Add CSS loaders and babel to webpack.
 
 module.exports = () => {
-  return {
-    mode: 'development',
-    entry: {
-      main: './src/js/index.js',
-      install: './src/js/install.js'
-    },
-    output: {
-      filename: '[name].bundle.js',
-      path: path.resolve(__dirname, 'dist'),
-    },
-    plugins: [
-      
-    ],
+	return {
+		mode: 'development',
+		entry: {
+			main: './src/js/index.js',
+			install: './src/js/install.js',
+		},
+		output: {
+			filename: '[name].bundle.js',
+			path: path.resolve(__dirname, 'dist'),
+		},
+		plugins: [
+			// Bundles our index.html file.
+			new HtmlWebpackPlugin({
+				template: './index.html',
+				title: 'Contact Cards',
+			}),
+			new WebpackPwaManifest({
+				name: 'Just Another Text Editor ',
+				short_name: 'J.A.T.E',
+				description: 'A PWA for writing down texts.',
+				icons: [
+					{
+						src: path.ressolve('src/images/logo.png'),
+						sizes: [96, 128, 192, 384, 512],
+					},
+				],
+			}),
+		],
 
-    module: {
-      rules: [
-        
-      ],
-    },
-  };
+		module: {
+			rules: [
+				//CSS loader so the CSS file takes effect
+				{
+					test: /\.css$/i,
+					use: ['style-loader', 'css-loader'],
+				},
+				{
+					test: /\.m?js$/,
+					exclude: /node_modules/,
+					// babel-loader to enable ES6
+					use: {
+						loader: 'babel-loader',
+						options: {
+							presets: ['@babel/preset-env'],
+							plugins: [
+								'@babel/plugin-proposal-object-rest-spread',
+								'@babel/transform-runtime',
+							],
+						},
+					},
+				},
+			],
+		},
+	};
 };
