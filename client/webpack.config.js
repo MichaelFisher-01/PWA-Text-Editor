@@ -21,18 +21,24 @@ module.exports = () => {
 			// Bundles our index.html file.
 			new HtmlWebpackPlugin({
 				template: './index.html',
-				title: 'Contact Cards',
+				title: 'JATE',
 			}),
 			new WebpackPwaManifest({
 				name: 'Just Another Text Editor ',
 				short_name: 'J.A.T.E',
 				description: 'A PWA for writing down texts.',
+				state_url: '/',
+				publicPath: '/',
 				icons: [
 					{
 						src: path.ressolve('src/images/logo.png'),
 						sizes: [96, 128, 192, 384, 512],
 					},
 				],
+			}),
+			new InjectManifest({
+				swSrc: '.src-sw.js',
+				swDest: 'src-sw.js',
 			}),
 		],
 
