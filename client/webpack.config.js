@@ -34,14 +34,17 @@ module.exports = () => {
 				theme_color: '#ffffff',
 				fingerprints: false,
 				inject: true,
-				includeDirectory: true,
 				icons: [
 					{
 						src: path.resolve('src/images/logo.png'),
 						sizes: [96, 128, 192, 384, 512],
-						destination: path.join('assests', 'icons'),
+						destination: path.join('./assests', 'icons'),
 					},
 				],
+			}),
+			new InjectManifest({
+				swSrc: './src-sw.js',
+				swDest: 'src-sw.js',
 			}),
 		],
 
