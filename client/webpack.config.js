@@ -24,21 +24,24 @@ module.exports = () => {
 				title: 'JATE',
 			}),
 			new WebpackPwaManifest({
+				filename: 'manifest.json',
 				name: 'Just Another Text Editor ',
 				short_name: 'J.A.T.E',
-				description: 'A PWA for writing down texts.',
-				state_url: '/',
-				publicPath: '/',
+				description: 'A PWA for saving code snippets.',
+				start_url: './',
+				publicPath: './',
+				background_color: '#ffffff',
+				theme_color: '#ffffff',
+				fingerprints: false,
+				inject: true,
+				includeDirectory: true,
 				icons: [
 					{
 						src: path.resolve('src/images/logo.png'),
 						sizes: [96, 128, 192, 384, 512],
+						destination: path.join('assests', 'icons'),
 					},
 				],
-			}),
-			new InjectManifest({
-				swSrc: './src-sw.js',
-				swDest: 'src-sw.js',
 			}),
 		],
 
