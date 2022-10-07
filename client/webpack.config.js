@@ -31,13 +31,13 @@ module.exports = () => {
 				publicPath: '/',
 				icons: [
 					{
-						src: path.ressolve('src/images/logo.png'),
+						src: path.resolve('src/images/logo.png'),
 						sizes: [96, 128, 192, 384, 512],
 					},
 				],
 			}),
 			new InjectManifest({
-				swSrc: '.src-sw.js',
+				swSrc: './src-sw.js',
 				swDest: 'src-sw.js',
 			}),
 		],
