@@ -24,7 +24,6 @@ module.exports = () => {
 				title: 'JATE',
 			}),
 			new WebpackPwaManifest({
-				filename: 'manifest.json',
 				name: 'Just Another Text Editor ',
 				short_name: 'J.A.T.E',
 				description: 'A PWA for saving code snippets.',
